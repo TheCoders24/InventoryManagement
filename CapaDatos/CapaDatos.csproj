@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Darticulos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DUsuarios.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
