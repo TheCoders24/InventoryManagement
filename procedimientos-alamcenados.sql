@@ -245,3 +245,34 @@ BEGIN
     DELETE FROM Usuarios
     WHERE UserID = @UserID;
 END;
+
+CREATE PROCEDURE sp_MostrarUsuariosConRoles
+AS
+BEGIN
+    SELECT U.UserID, U.Username, U.Contraseña, U.RoleID, R.RoleName
+    FROM Usuarios U
+    INNER JOIN Roles R ON U.RoleID = R.RoleID;
+END;
+
+
+CREATE PROCEDURE sp_login
+    @Username VARCHAR(50),
+    @Contraseña VARCHAR(50)
+AS
+BEGIN
+    DECLARE @UserID INT;
+    DECLARE @RoleID INT;
+
+    SELECT @UserID = UserID, @RoleID = RoleID
+    FROM Usuarios
+    WHERE Username = @Username AND Contraseña = @Contraseña;
+
+    IF @UserID IS NOT NULL
+    BEGIN
+        SELECT 'Login successful' AS Message, @UserID AS UserID, @RoleID AS RoleID;
+    END
+    ELSE
+    BEGIN
+        SELECT 'Login failed. Invalid username or password.' AS Message;
+    END
+END;

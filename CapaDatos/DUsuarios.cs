@@ -205,5 +205,23 @@ namespace CapaDatos
         }
         #endregion
 
+        #region login
+        public DataTable login(DUsuarios dUsuarios)
+        {
+            var resultadotabla = new DataTable("Usuarios");
+            var conexionsql = new SqlConnection(conexionDB.ConexionStatic(Servidor, user, password, database));
+            try
+            {
+
+                var comandosql = new SqlCommand("[sp_login]", conexionsql);
+
+            }catch (Exception ex)
+            {
+                resultadotabla = null;
+            }
+            return resultadotabla;
+        }
+        #endregion
+
     }
 }
