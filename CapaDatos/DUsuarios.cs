@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -214,9 +215,21 @@ namespace CapaDatos
             {
 
                 var comandosql = new SqlCommand("[sp_login]", conexionsql);
+                comandosql.CommandType = CommandType.StoredProcedure;
 
-            }catch (Exception ex)
+                //Parametros
+                var parUsuario = new SqlParameter("@UserName", SqlDbType.VarChar, 20);
+                parUsuario.Value = dUsuarios.UserName;
+                comandosql.Parameters.Add(parUsuario);
+
+
+                SqlDataAdapter sqldat = new SqlDataAdapter(comandosql);
+                sqldat.Fill(resultadotabla);
+
+            }
+            catch (Exception ex)
             {
+              
                 resultadotabla = null;
             }
             return resultadotabla;
