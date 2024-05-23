@@ -13,13 +13,13 @@ namespace CapaDatos
 {
     public class DUsuarios
     {
-        /*
-     UserID INT PRIMARY KEY,
-     Username VARCHAR(50) NOT NULL,
-     Contraseña VARCHAR(50) NOT NULL,
-     RoleID INT NOT NULL,
-     FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
-        */
+            /*
+         UserID INT PRIMARY KEY,
+         Username VARCHAR(50) NOT NULL,
+         Contraseña VARCHAR(50) NOT NULL,
+         RoleID INT NOT NULL,
+         FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
+            */
 
         #region variables_globales_conexiondb
         public static string Servidor { get; set; }
