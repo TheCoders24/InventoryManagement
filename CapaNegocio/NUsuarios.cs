@@ -11,15 +11,18 @@ namespace CapaNegocio
     public class NUsuarios
     {
 
-        /*
-      UserID INT PRIMARY KEY,
-      Username VARCHAR(50) NOT NULL,
-      Contraseña VARCHAR(50) NOT NULL,
-      RoleID INT NOT NULL,
-      FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
-         */
+            /*
+          UserID INT PRIMARY KEY,
+          Username VARCHAR(50) NOT NULL,
+          Contraseña VARCHAR(50) NOT NULL,
+          RoleID INT NOT NULL,
+          FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
+             */
 
+        #region constructor
         public NUsuarios() { }
+
+        #endregion
 
         #region insertarusuarios
         public static string insertarusuarios(int userid,string username,string contraseña,int roleid) 
