@@ -47,10 +47,8 @@ namespace InventoryManagement
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int usuarioID;
-            string usuario;
-            string password;
-            int RoleID;
+            RegistrarUser registrarUser = new RegistrarUser();
+            registrarUser.Show();
         }
     }
 }
