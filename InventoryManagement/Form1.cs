@@ -44,5 +44,13 @@ namespace InventoryManagement
                 MessageBox.Show("Ocurrio un error al intentar iniciar sesion"+ex.Message);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int usuarioID;
+            string usuario;
+            string password;
+            int RoleID;
+        }
     }
 }
