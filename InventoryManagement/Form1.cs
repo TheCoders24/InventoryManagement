@@ -20,13 +20,29 @@ namespace InventoryManagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string usuario = textBox1.Text;
-            string password = textBox2.Text;
+            try
+            {
+                string usuario = textBox1.Text;
+                string password = textBox2.Text;
 
-            DataTable datos = NUsuarios.login(usuario.ToString(),password.ToString());
-            if (datos == null)
-                MessageBox.Show("usuarios" + usuario.ToString() + "password" + password.ToString());
-                
+                //validar entradas de usuarios
+                if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("porfavor ingrese el usuario y el password");
+                    return;
+                }
+                //manejamos la conexion de la base de datos y previene injection sql 
+                DataTable datos = NUsuarios.login(usuario.ToString(), password.ToString());
+                if (datos == null || datos.Rows.Count == 0)
+                    MessageBox.Show("usuarios" + usuario.ToString() + "password" + password.ToString());
+                else
+                    MessageBox.Show("inicio de sesion correctamente");
+            }
+            catch (Exception ex)
+            {
+               
+                MessageBox.Show("Ocurrio un error al intentar iniciar sesion"+ex.Message);
+            }
         }
     }
 }
