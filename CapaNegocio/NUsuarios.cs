@@ -72,5 +72,18 @@ namespace CapaNegocio
         }
         #endregion
 
+
+        #region loginusuarios
+        public static DataTable login(string usuario, string password)
+        {
+            DUsuarios dUsuarios = new DUsuarios()
+            {
+                UserName = usuario,
+                Contraseña = password
+            };
+            return dUsuarios.login(dUsuarios);
+        }
+        #endregion
+
     }
 }
