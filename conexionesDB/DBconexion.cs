@@ -30,8 +30,8 @@ namespace conexionesDB
         public static String ConexionStatic(string Servidor,string User,string Passwordd,string Base_Datos)
         {
             #region Variablesconcadenaconexion
-            ServidorNo = "ALEXIS";
-            Users = "alexis";
+            ServidorNo = "DESKTOP-7FVF0T5";
+            Users = "sa";
             Password = "12345";
             DataBase = "InventoryManagement";
             #endregion
