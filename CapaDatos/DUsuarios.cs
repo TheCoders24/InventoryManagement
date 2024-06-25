@@ -222,7 +222,7 @@ namespace CapaDatos
                 parUsuario.Value = dUsuarios.UserName;
                 comandosql.Parameters.Add(parUsuario);
 
-                var parpassword = new SqlParameter("@UserName", SqlDbType.VarChar, 20);
+                var parpassword = new SqlParameter("@Contraseña", SqlDbType.VarChar, 20);
                 parpassword.Value = dUsuarios.Contraseña;
                 comandosql.Parameters.Add(parpassword);
 
