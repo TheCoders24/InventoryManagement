@@ -214,7 +214,7 @@ namespace CapaDatos
             try
             {
 
-                var comandosql = new SqlCommand("[sp_login]", conexionsql);
+                var comandosql = new SqlCommand("[LoginUsuario]", conexionsql);
                 comandosql.CommandType = CommandType.StoredProcedure;
 
                 //Parametros
@@ -222,6 +222,9 @@ namespace CapaDatos
                 parUsuario.Value = dUsuarios.UserName;
                 comandosql.Parameters.Add(parUsuario);
 
+                var parpassword = new SqlParameter("@UserName", SqlDbType.VarChar, 20);
+                parpassword.Value = dUsuarios.Contraseña;
+                comandosql.Parameters.Add(parpassword);
 
                 SqlDataAdapter sqldat = new SqlDataAdapter(comandosql);
                 sqldat.Fill(resultadotabla);

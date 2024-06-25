@@ -15,14 +15,10 @@ namespace conexionesDB
         public static String DataBase { get; set; }
         #endregion
 
-
         #region constructor
         public conexionDB()
         {
-            ServidorNo = string.Empty;
-            Users = string.Empty;
-            Password = string.Empty;
-            DataBase = string.Empty;
+           
         }
         #endregion
 
@@ -35,11 +31,7 @@ namespace conexionesDB
             Password = "12345";
             DataBase = "InventoryManagement";
             #endregion
-
-            ServidorNo = Servidor;
-            Users = User;
-            Password = Passwordd;
-            DataBase = Base_Datos;
+ 
             return $"Data Source={ServidorNo};Initial Catalog={DataBase};User ID={Users};Password={Password};TrustServerCertificate=true;";
         }
         #endregion
