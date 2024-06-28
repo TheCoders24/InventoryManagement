@@ -63,7 +63,7 @@ namespace CapaDatos
             {
                 conexionsql.Open();
 
-                var comandosql = new SqlCommand("[sp_InsertarUsuario]",conexionsql);
+                var comandosql = new SqlCommand("[spInsertarUsuario]", conexionsql);
                 comandosql.CommandType = CommandType.StoredProcedure;
 
                 var userid = new SqlParameter("@UserID",SqlDbType.Int);

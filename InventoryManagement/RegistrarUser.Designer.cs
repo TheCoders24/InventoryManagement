@@ -37,6 +37,8 @@
             this.txtroleid = new System.Windows.Forms.TextBox();
             this.txtuserid = new System.Windows.Forms.TextBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
+            this.dataGridViewRegister = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRegister)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -113,11 +115,20 @@
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
+            // dataGridViewRegister
+            // 
+            this.dataGridViewRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRegister.Location = new System.Drawing.Point(334, 13);
+            this.dataGridViewRegister.Name = "dataGridViewRegister";
+            this.dataGridViewRegister.Size = new System.Drawing.Size(451, 280);
+            this.dataGridViewRegister.TabIndex = 15;
+            // 
             // RegistrarUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 217);
+            this.ClientSize = new System.Drawing.Size(822, 305);
+            this.Controls.Add(this.dataGridViewRegister);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -130,6 +141,7 @@
             this.Name = "RegistrarUser";
             this.Text = "RegistrarUser";
             this.Load += new System.EventHandler(this.RegistrarUser_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRegister)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +158,6 @@
         private System.Windows.Forms.TextBox txtroleid;
         private System.Windows.Forms.TextBox txtuserid;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.DataGridView dataGridViewRegister;
     }
 }
