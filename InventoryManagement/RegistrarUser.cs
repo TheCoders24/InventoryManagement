@@ -22,8 +22,9 @@ namespace InventoryManagement
         }
         private void RegistrarUser_Load(object sender, EventArgs e)
         {
-
+            LoadData();
         }
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             int userid = Convert.ToInt32(txtuserid.Text);
@@ -49,15 +50,39 @@ namespace InventoryManagement
                 //manejamos la conexion de la base de datos y previene injection sql
                 string datosregister = NUsuarios.insertarusuarios(userid, usuario, password, roleid);
                 //MessageBox.Show(datosregister);
-               
-                DataTable usuarios = NUsuarios.mostrarusuarios();
-                dataGridViewRegister.DataSource = usuarios;
-
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("error al registrar el usuario" + ex.Message);
             }
+        }
+
+        private void LoadData()
+        {
+
+            try
+            {
+                string connectionString = conexionDB.ConexionStatic(conexionDB.ServidorNo,conexionDB.Password,conexionDB.Users, conexionDB.DataBase);
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT Username, Contraseña,RoleID FROM Usuarios";
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "Usuarios");
+
+                    dataGridViewRegister.DataSource = ds.Tables["Usuarios"];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Información");
+            }
+
+
         }
     }
 }

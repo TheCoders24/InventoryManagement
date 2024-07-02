@@ -120,14 +120,14 @@
             this.dataGridViewRegister.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRegister.Location = new System.Drawing.Point(334, 13);
             this.dataGridViewRegister.Name = "dataGridViewRegister";
-            this.dataGridViewRegister.Size = new System.Drawing.Size(451, 280);
+            this.dataGridViewRegister.Size = new System.Drawing.Size(345, 280);
             this.dataGridViewRegister.TabIndex = 15;
             // 
             // RegistrarUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 305);
+            this.ClientSize = new System.Drawing.Size(690, 305);
             this.Controls.Add(this.dataGridViewRegister);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.label3);
