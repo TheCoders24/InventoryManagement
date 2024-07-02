@@ -28,6 +28,12 @@ namespace InventoryManagement
                 }
                 else if(txtDescripcion.Text == string.Empty){
                     MessageBox.Show("Falta ingresar algunos datos" + "seleccione la Descripcion" + txtDescripcion);
+                }else if (txtProductID.Text == string.Empty)
+                {
+                    MessageBox.Show("Falta ingresar algunos datos" + "seleccione el Productos ID" + txtProductID);
+                }else if (txtPrecio.Text == string.Empty)
+                {
+                    MessageBox.Show("Falta ingresar algunos datos" + "selecione el Precio " + txtPrecio);
                 }
             }catch(Exception ex) 
             {
