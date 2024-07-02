@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaDatos;
+using CapaNegocio;
 
 namespace InventoryManagement
 {
@@ -34,6 +36,13 @@ namespace InventoryManagement
                 }else if (txtPrecio.Text == string.Empty)
                 {
                     MessageBox.Show("Falta ingresar algunos datos" + "selecione el Precio " + txtPrecio);
+                }
+                try
+                {
+                   
+                }
+                catch (Exception ex) {
+                    MessageBox.Show("Sucedio un Error al Registrar el Producto" + ex.Message);
                 }
             }catch(Exception ex) 
             {
