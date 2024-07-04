@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaNegocio
+{
+    public class NPresentacion
+    {
+
+        #region insertar_presentacion
+        
+        public static string insertar_presentacion(string nombre, string descripcion)
+        {
+            
+        }
+
+        #endregion
+
+    }
+}

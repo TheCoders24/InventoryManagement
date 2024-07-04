@@ -60,6 +60,11 @@ namespace CapaNegocio
         }
         #endregion
 
-
+        #region StockArticulos_articulos
+        public static DataTable StockArticulos()
+        {
+            return new Darticulos().StockArticulos();
+        }
+        #endregion
     }
 }
