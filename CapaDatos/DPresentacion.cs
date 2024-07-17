@@ -24,7 +24,6 @@ namespace CapaDatos
         #endregion
 
         #region Metodo_Insertar_Presentacion
-
         public string insertar_presentacion(DPresentacion presentacion)
         {
             string Respuesta = "";
