@@ -41,7 +41,6 @@ namespace InventoryManagement
             }
             catch (Exception ex)
             {
-               
                 MessageBox.Show("Ocurrio un error al intentar iniciar sesion"+ex.Message);
             }
         }

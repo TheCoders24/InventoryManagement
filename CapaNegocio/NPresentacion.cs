@@ -11,11 +11,6 @@ namespace CapaNegocio
 
         #region insertar_presentacion
         
-        public static string insertar_presentacion(string nombre, string descripcion)
-        {
-            
-        }
-
         #endregion
 
     }
