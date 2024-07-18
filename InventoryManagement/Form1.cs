@@ -35,9 +35,13 @@ namespace InventoryManagement
                 //manejamos la conexion de la base de datos y previene injection sql 
                 DataTable datos = NUsuarios.login(usuario.ToString(), password.ToString());
                 if (datos == null || datos.Rows.Count == 0)
-                    MessageBox.Show("usuarios" + usuario.ToString() + "password" + password.ToString());
+                {
+                    FrmArticulos frmArticulos = new FrmArticulos();
+                    frmArticulos.ShowDialog();
+                    this.Close();
+                }
                 else
-                    MessageBox.Show("inicio de sesion correctamente");
+                    MessageBox.Show("Ocurrio un Error");
             }
             catch (Exception ex)
             {

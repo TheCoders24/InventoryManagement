@@ -24,7 +24,7 @@ namespace InventoryManagement
             txtIdArticulo.Clear();
             txtIdCategoria.Clear();
             txtCodigos.Clear();
-            txtCategoria.Clear();
+           
             txtNombre.Clear();
             txtBuscar.Clear();
             txtDescripcion.Clear();
@@ -46,26 +46,26 @@ namespace InventoryManagement
         //Habilitar Botones si se quiere editar o agregar un nuevo producto
         public void Habilitar_Botones()
         {
-            if (is_Editar ||  is_Nuevo)
-            {
+            //if (is_Editar ||  is_Nuevo)
+            //{
 
-                Habilitar_Botones();
-                btnNuevo.Enabled = false;
-                btnGuardar.Enabled = true;
-                btnEditar.Enabled = false;
-                btnCancelar.Enabled = true;
+            //    Habilitar_Botones();
+            //    btnNuevo.Enabled = false;
+            //    btnGuardar.Enabled = true;
+            //    btnEditar.Enabled = false;
+            //    btnCancelar.Enabled = true;
 
-            }
-            else
-            {
-                Habilitar_Botones();
+            //}
+            //else
+            //{
+            //    Habilitar_Botones();
 
-                btnNuevo.Enabled = true;
-                btnGuardar.Enabled = false;
-                btnEditar.Enabled = true;
-                btnCancelar.Enabled = false;
+            //    btnNuevo.Enabled = true;
+            //    btnGuardar.Enabled = false;
+            //    btnEditar.Enabled = true;
+            //    btnCancelar.Enabled = false;
 
-            }
+            //}
         }
 
         // habilitar los controles del formulario para registrar o editar articulo
@@ -77,8 +77,7 @@ namespace InventoryManagement
             txtIdArticulo.ReadOnly = !valor;
             txtDescripcion.ReadOnly = !valor;
 
-            btnBuscarCategoria.Enabled = valor;
-            cbPresentacion.Enabled = valor;
+           
             btnCargar.Enabled = valor;
             btnLimpiar.Enabled = valor;
 
@@ -108,15 +107,15 @@ namespace InventoryManagement
         //Ocultar Columnas
         private void OcultarColumnas()
         {
-            dataListado.Columns[0].Visible = false;
-            dataListado.Columns[1].Visible = false;
-            dataListado.Columns[6].Visible = false;
-            dataListado.Columns[8].Visible = false;
+            //dataListado.Columns[0].Visible = false;
+            //dataListado.Columns[1].Visible = false;
+            //dataListado.Columns[6].Visible = false;
+            //dataListado.Columns[8].Visible = false;
         }
         //Metodo Mostrar
         private void Mostrar()
         {
-            this.dataListado.DataSource = Narticulo.Mostrar();
+            this.dataListado.DataSource = Narticulo.Mostrar_Articulo();
             this.OcultarColumnas();
             lblTotal.Text = "Total Registros: " + dataListado.Rows.Count;
         }
@@ -129,13 +128,16 @@ namespace InventoryManagement
             lblTotal.Text = "Total Registros: " + dataListado.Rows.Count;
         }
 
-        //Llenar los datos del combo box (presentaciones de los articulos)
-        private void LlenarComboPresentacion()
-        {
-            cbPresentacion.DataSource = NPresentacion.Mostrar();
-            cbPresentacion.ValueMember = "idpresentacion";
-            cbPresentacion.DisplayMember = "nombre";
-        }
+        #region FUNCION_PENDIENTE_REVISAR
+        //FUNCION QUEDA PENDIENTE
+        //Llenar los datos del combo box (presentaciones de los articulos) 
+        //private void LlenarComboPresentacion()
+        //{
+        //    cbPresentacion.DataSource = NPresentacion.Mostrar();
+        //    cbPresentacion.ValueMember = "idpresentacion";
+        //    cbPresentacion.DisplayMember = "nombre";
+        //}
+        #endregion
 
         //Para llamar al desde el formulario FrmVistaCategoria
         private static FrmArticulos _Instancia;
@@ -152,9 +154,8 @@ namespace InventoryManagement
         public void SetCategoria(string idcategoria, string nombre)
         {
             txtIdCategoria.Text = idcategoria;
-            txtCategoria.Text = nombre;
+           
         }
-
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -176,11 +177,11 @@ namespace InventoryManagement
                     MessageBox.Show("Falta ingresar algunos datos.");
                     MessageBox.Show(txtNombre, "Ingrese un nombre");
                 }
-                else if (txtIdCategoria.Text == string.Empty)
-                {
-                    MessageBox.Show("Falta ingresar algunos datos.");
-                    MessageBox.Show(txtCategoria, "Seleccione una Categoria");
-                }
+                //else if (txtIdCategoria.Text == string.Empty)
+                //{
+                //    MessageBox.Show("Falta ingresar algunos datos.");
+                //    MessageBox.Show(txtCategoria, "Seleccione una Categoria");
+                //}
                 else if (txtCodigos.Text == string.Empty)
                 {
                     MessageBox.Show("Falta ingresar algunos datos.");
@@ -194,14 +195,16 @@ namespace InventoryManagement
                     //pxImagen.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png); //Formato de la imagen.
 
                     byte[] imagen = ms.GetBuffer();
-
+                    int precio = 10;
                     if (is_Nuevo)
                     {
-                        respuesta = Narticulo.Insertar_articulo(txtCodigos.Text, txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), imagen, Convert.ToInt32(txtIdCategoria.Text), Convert.ToInt32(cbPresentacion.SelectedValue));
+                        //int productid,string nombreproduct, string descripction, int precios
+
+                        respuesta = Narticulo.Insertar_articulo(Convert.ToInt16(txtCodigos.Text), txtNombre.Text,txtDescripcion.Text,precio);
                     }
                     else
                     {
-                        respuesta = Narticulo.Editar_Productos(Convert.ToInt32(txtIdArticulo.Text), txtCodigos.Text.Trim(), txtNombre.Text.Trim().ToUpper(), txtDescripcion.Text.Trim(), imagen, Convert.ToInt32(txtIdCategoria.Text), Convert.ToInt32(cbPresentacion.SelectedValue));
+                        respuesta = Narticulo.Editar_Productos(Convert.ToInt16(txtCodigos.Text), txtNombre.Text, txtDescripcion.Text,precio);
                     }
 
                     if (respuesta.Equals("Ok"))
@@ -249,7 +252,11 @@ namespace InventoryManagement
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            is_Nuevo = false;
+            is_Editar = false;
+            Habilitar_Controles(false);
+            Habilitar_Botones();
+            Limpiar_Textobox();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -275,7 +282,7 @@ namespace InventoryManagement
                         if (Convert.ToBoolean(fila.Cells[0].Value))
                         {
                             IdCategoria = Convert.ToInt32(fila.Cells[1].Value);
-                            respuesta = Narticulo.Eliminar(IdCategoria);
+                            respuesta = Narticulo.Eliminar_Articulo(IdCategoria);
 
                             if (respuesta.Equals("Ok"))
                             {
@@ -290,7 +297,6 @@ namespace InventoryManagement
 
                     Mostrar();
                     chkEliminar.Checked = false;
-
 
                 }
             }

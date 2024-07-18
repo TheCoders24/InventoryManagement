@@ -40,14 +40,11 @@ namespace CapaNegocio
         #endregion
 
         #region Eliminar_Articulo
-        public static string Eliminar_Articulo(int productid, string nombreproduct, string descripction, int precios)
+        public static string Eliminar_Articulo(int productid)
         {
             Darticulos articulos = new Darticulos()
             {
-                ProductoID = productid,
-                NombreProductos = nombreproduct,
-                Descripciones = descripction,
-                precios = precios,
+                ProductoID = productid
             };
             return articulos.EliminarProductos(articulos);
         }
@@ -66,5 +63,18 @@ namespace CapaNegocio
             return new Darticulos().StockArticulos();
         }
         #endregion
+
+        #region BuscarNombre
+        public static DataTable BuscarNombre(string textoBuscar)
+        {
+            Darticulos Articulo = new Darticulos()
+            {
+                TextoBuscar = textoBuscar
+            };
+
+            return Articulo.BuscarNombre(Articulo);
+        }
+        #endregion
+
     }
 }

@@ -21,13 +21,14 @@ namespace CapaDatos
 
         #region constructor
         public Darticulos() { }
-        public Darticulos(int ProductID,string NombreProducto,string Descripcion,int precio)
+        public Darticulos(int ProductID,string NombreProducto,string Descripcion,int precio,string textobuscar)
         {
             ProductoID = ProductID;
             NombreProductos = NombreProducto;
             Descripciones = Descripcion;
             precios = precio;
-            
+            TextoBuscar = textobuscar;
+
             conexionDB conexionDB = new conexionDB();
             conexionDB.ServidorNo = Servidor;
             conexionDB.Users = user;
@@ -41,6 +42,7 @@ namespace CapaDatos
         public string NombreProductos { get; set; }
         public string Descripciones { get; set; }
         public int precios { get; set; }
+        public string TextoBuscar { get; set; }
         #endregion
 
         #region insertarproductos
@@ -54,7 +56,7 @@ namespace CapaDatos
                 conexionsql.Open(); //abrimos la conexion del sql server
 
                 //Establecemos el comando sql 
-                var comandosql = new SqlCommand("[sp_InsertarProducto]",conexionsql);
+                var comandosql = new SqlCommand("[spInsertarProducto]", conexionsql);
                 comandosql.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //parametros para el comando de sql sel pocedimiento almacenado
@@ -104,7 +106,7 @@ namespace CapaDatos
             {
 
                 conexionsql.Open();
-                var comandosql = new SqlCommand("[sp_ActualizarProducto]", conexionsql);
+                var comandosql = new SqlCommand("[spEditarProducto]", conexionsql);
                 comandosql.CommandType = CommandType.StoredProcedure;
 
                 //parametros para el comando de sql sel pocedimiento almacenado
@@ -152,7 +154,7 @@ namespace CapaDatos
 
                 conexionsql.Open();
                 //establecemos el comando sql para el procedimientos almacenados
-                var comandosql = new SqlCommand("[sp_EliminarProducto]", conexionsql);
+                var comandosql = new SqlCommand("[spEliminarProducto]", conexionsql);
                 comandosql.CommandType = CommandType.StoredProcedure;
 
                 //paramentros para el command sql del procedimientos almacenados
@@ -207,7 +209,7 @@ namespace CapaDatos
             var conexionSql = new SqlConnection(conexionDB.ConexionStatic(Servidor,user,password,database));
             try
             {
-                var comandoSql = new SqlCommand("[sp_MostrarStockProductos]", conexionSql);
+                var comandoSql = new SqlCommand("[MostrarProductos]", conexionSql);
                 comandoSql.CommandType = CommandType.StoredProcedure;
 
                 var SqlDat = new SqlDataAdapter(comandoSql);
@@ -222,6 +224,40 @@ namespace CapaDatos
             return resultadoTabla;
 
 
+        }
+        #endregion
+
+        #region MetodoBuscarNombre
+        //Metodo BuscarNombre
+        public DataTable BuscarNombre(Darticulos Articulo)
+        {
+            //Cadena de conexion y DataTable (tabla)
+            var resultadoTabla = new DataTable("articulo");
+            var conexionSql = new SqlConnection(conexionDB.ConexionStatic(conexionDB.ServidorNo,conexionDB.Users, conexionDB.Users, conexionDB.Password));
+
+
+            try
+            {
+
+                var comandoSql = new SqlCommand("[BuscarProductoPorNombre]", conexionSql);
+                comandoSql.CommandType = CommandType.StoredProcedure;
+
+                //Parametros
+                var ParTextoBuscar = new SqlParameter("@textobuscar", SqlDbType.VarChar, 50);
+                ParTextoBuscar.Value = Articulo.TextoBuscar;
+                comandoSql.Parameters.Add(ParTextoBuscar);
+
+
+                var SqlDat = new SqlDataAdapter(comandoSql);
+                SqlDat.Fill(resultadoTabla);
+
+            }
+            catch (Exception)
+            {
+                resultadoTabla = null;
+            }
+
+            return resultadoTabla;
         }
         #endregion
 
