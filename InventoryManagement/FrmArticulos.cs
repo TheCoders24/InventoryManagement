@@ -336,8 +336,61 @@ namespace InventoryManagement
         }
 
 
+        #region PROCEDIMIENTOS_ALMACENADOS_SUBIAR_GITHUB
+        /*
+                    CREATE PROCEDURE spInsertarProducto
+                @NombreProducto NVARCHAR(255),
+                @Descripcion NVARCHAR(MAX),
+                @Precio DECIMAL(18, 2)
+            AS
+            BEGIN
+                INSERT INTO Productos(NombreProducto, Descripcion, Precio)
+                VALUES(@NombreProducto, @Descripcion, @Precio);
+                    END
 
 
+                    CREATE PROCEDURE spEditarProducto
+                @ProductID INT,
+                @NombreProducto NVARCHAR(255),
+                @Descripcion NVARCHAR(MAX),
+                @Precio DECIMAL(18, 2)
+            AS
+            BEGIN
+                UPDATE Productos
+                SET NombreProducto = @NombreProducto,
+                    Descripcion = @Descripcion,
+                    Precio = @Precio
+                WHERE ProductID = @ProductID;
+                    END
+
+
+                    CREATE PROCEDURE spEliminarProducto
+                @ProductID INT
+            AS
+            BEGIN
+                DELETE FROM Productos
+                WHERE ProductID = @ProductID;
+            END
+
+
+            CREATE PROCEDURE MostrarProductos
+            AS
+            BEGIN
+                SELECT ProductID, NombreProducto, Descripcion, Precio
+                FROM Productos;
+                    END
+
+                    CREATE PROCEDURE BuscarProductoPorNombre
+                @NombreProducto NVARCHAR(255)
+            AS
+            BEGIN
+                SELECT ProductID, NombreProducto, Descripcion, Precio
+                FROM Productos
+                WHERE NombreProducto LIKE '%' + @NombreProducto + '%';
+            END
+
+        */
+        #endregion
 
     }
 }
